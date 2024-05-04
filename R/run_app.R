@@ -14,6 +14,15 @@ run_app <- function(
     enableBookmarking = NULL,
     uiPattern = "/"
     ) {
+
+  if (isFALSE('flashCardDash' %in% (.packages()))){
+    pkgload::load_all(
+      export_all = FALSE,
+      helpers = FALSE,
+      attach_testthat = FALSE
+    )
+  }
+
   shinyApp(
     ui = app_ui,
     server = app_server,
@@ -21,6 +30,5 @@ run_app <- function(
     options = options,
     enableBookmarking = enableBookmarking,
     uiPattern = uiPattern
-  ) -> res
-  print(res)
+  )
 }
